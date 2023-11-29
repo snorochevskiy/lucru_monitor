@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.5.xsd">
+
+    <changeSet author="snorochevskiy" id="2023-11-12_create_table_companies">
+        <createTable tableName="companies">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="id"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="linkedin_id" type="VARCHAR(255)"/>
+            <column name="website" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="specialist_types">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="id"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createTable tableName="vacancies">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ID"/>
+            </column>
+            <column name="company_id" type="INTEGER" >
+                <constraints nullable="false" foreignKeyName="fk_vacancy_company_id" references="companies(id)" />
+            </column>
+            <column name="description" type="CLOB" >
+                <constraints nullable="false" />
+            </column>
+            <column name="detected_date" type="DATE" >
+                <constraints nullable="false" />
+            </column>
+            <column name="closed_date" type="DATE" >
+                <constraints nullable="false" />
+            </column>
+            <column name="specialist_type_id" type="INTEGER" >
+                <constraints nullable="true" foreignKeyName="fk_vacancy_specialist_type_id" references="specialist_types(id)" />
+            </column>
+            <column name="grade" type="INTEGER" > <!-- 1-Junior 2-Middle 3-Senior 4-Lead 5-Architect -->
+                <constraints nullable="true" />
+            </column>
+            <column name="work_type" type="INTEGER" > <!-- 1-onside 2-remote 3-hybrid -->
+                <constraints nullable="true" />
+            </column>
+            <column name="location" type="VARCHAR(255)" />
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
