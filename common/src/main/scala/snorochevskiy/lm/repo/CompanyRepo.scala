@@ -1,4 +1,4 @@
-package snorochevskiy.lm.service
+package snorochevskiy.lm.repo
 
 import snorochevskiy.lm.persist.{Company, Database}
 import zio.*

@@ -1,11 +1,10 @@
 package snorochevskiy.lm.config
 
 import com.typesafe.config.ConfigFactory
-import zio.*
-import zio.config.*
-import zio.config.magnolia.*
-import zio.config.typesafe.*
+import zio.config.magnolia.deriveConfig
+import zio.{ZIO, ZLayer, config}
 import zio.config.typesafe.TypesafeConfigProvider.fromTypesafeConfig
+import zio.config.{magnolia, typesafe}
 
 case class DbCfg(
   connectionString: String,

@@ -1,6 +1,6 @@
-package snorochevskiy.lm.web
+package snorochevskiy.lm.web.routes
 
-import snorochevskiy.lm.service.CompanyRepo
+import snorochevskiy.lm.repo.CompanyRepo
 import zio.*
 import zio.http.*
 

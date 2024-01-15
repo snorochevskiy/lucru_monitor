@@ -1,15 +1,15 @@
-package snorochevskiy.lm
+package snorochevskiy.lm.web
 
 import snorochevskiy.lm.config.AppCfg
 import snorochevskiy.lm.persist.{Database, DatabaseLive, LiquibaseInit}
-import snorochevskiy.lm.service.CompanyRepo
-import snorochevskiy.lm.web.LucruRouter
+import snorochevskiy.lm.repo.CompanyRepo
+import snorochevskiy.lm.web.routes.LucruRouter
 import zio.*
 import zio.http.*
 
 import scala.util.Try
 
-object LucruApp extends ZIOAppDefault {
+object LucruWebApp extends ZIOAppDefault {
 
   override val run =
     val program = for {
@@ -23,7 +23,8 @@ object LucruApp extends ZIOAppDefault {
         Server.default,
         AppCfg.layer("snoro"),
         CompanyRepo.layer,
-        DatabaseLive.layer
+        DatabaseLive.layer,
+        // ZLayer.Debug.tree
       )
 }
 
